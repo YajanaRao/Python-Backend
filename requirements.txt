@@ -6,3 +6,15 @@ MarkupSafe==1.1.0
 nltk==3.3
 six==1.11.0
 Werkzeug==0.14.1
+Click==7.0
+Flask==1.0.2
+itsdangerous==1.1.0
+Jinja2==2.10
+MarkupSafe==1.1.0
+nltk==3.3
+numpy==1.15.4
+scikit-learn==0.20.0
+scipy==1.1.0
+six==1.11.0
+sklearn==0.0
+Werkzeug==0.14.1
