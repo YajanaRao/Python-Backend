@@ -50,7 +50,7 @@ def getHint():
 	global word_tokens
 	global sent_tokens
 	if request.method == 'GET':
-		user_response = request.args.get('q')
+		user_response = str(request.args.get('q'))
 		for word in user_response.split():
 			if word.lower() in GREETING_INPUTS:
 				return jsonify(random.choice(GREETING_RESPONSES))
