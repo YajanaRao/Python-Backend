@@ -4,8 +4,10 @@ import random
 import numpy as np
 import string
 import cv2
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
