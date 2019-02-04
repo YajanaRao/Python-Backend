@@ -11,8 +11,11 @@ CORS(app)
 
 GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
+try:
+    f = open('chatbot.txt', 'r', errors='ignore')
+except:
+    f = open('/home/Yajana/Python-Backend/chatbot.txt', 'r', errors='ignore')
 
-f=open('chatbot.txt','r',errors = 'ignore')
 raw=f.read()
 raw=raw.lower()# converts to lowercase
 
@@ -68,20 +71,23 @@ def getHint():
 
 @app.route("/video")
 def capture():
-    cap = cv2.VideoCapture(0)
+    try:
+        cap = cv2.VideoCapture(0)
+        while(True):
+            # Capture frame-by-frame
+            ret, frame = cap.read()
 
-    while(True):
-        # Capture frame-by-frame
-        ret, frame = cap.read()
+            # Our operations on the frame come here
+            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-        # Our operations on the frame come here
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # Display the resulting frame
+            cv2.imshow('frame', gray)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
 
-        # Display the resulting frame
-        cv2.imshow('frame',gray)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-    # When everything done, release the capture
-    cap.release()
-    cv2.destroyAllWindows()
+        # When everything done, release the capture
+        cap.release()
+        cv2.destroyAllWindows()
+    except cv2.error as e:
+        return jsonify("failed")
+   
